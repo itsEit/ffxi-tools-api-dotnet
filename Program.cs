@@ -1,4 +1,10 @@
+using FFXI_Tools_Api_dotnet.Models;
+using FFXI_Tools_Api_dotnet.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<MongoDBService>();
 
 // Add services to the container.
 
@@ -12,8 +18,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
