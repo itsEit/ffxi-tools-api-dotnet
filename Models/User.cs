@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace FFXI_Tools_Api_dotnet.Models;
 
+[BsonIgnoreExtraElements]
 public class User
 {
   [BsonId]

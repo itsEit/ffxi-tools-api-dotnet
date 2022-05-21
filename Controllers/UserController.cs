@@ -9,37 +9,37 @@ namespace FFXI_Tools_Api_dotnet.Controllers;
 [Route("api/[controller]")]
 public class UserController : Controller
 {
-  private readonly MongoDBService _mongoDBService;
+  private readonly UserService _userService;
 
-  public UserController(MongoDBService mongoDBService)
+  public UserController(UserService userService)
   {
-    _mongoDBService = mongoDBService;
+    _userService = userService;
 
   }
   [HttpGet]
   public async Task<List<User>> Get()
   {
-    return await _mongoDBService.GetAsync();
+    return await _userService.GetAsync();
   }
 
   [HttpPost]
   public async Task<IActionResult> Post([FromBody] User user)
   {
-    await _mongoDBService.CreateAsync(user);
+    await _userService.CreateAsync(user);
     return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
   }
 
   [HttpPut("{id}")]
   public async Task<IActionResult> AddToUser(string id, [FromBody] string role)
   {
-    await _mongoDBService.AddRolesAsync(id, role);
+    await _userService.AddRolesAsync(id, role);
     return NoContent();
   }
 
   [HttpDelete("{id}")]
   public async Task<IActionResult> Delete(string id)
   {
-    await _mongoDBService.DeleteAsync(id);
+    await _userService.DeleteAsync(id);
     return NoContent();
   }
 }

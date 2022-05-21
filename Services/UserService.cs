@@ -5,15 +5,15 @@ using MongoDB.Bson;
 
 namespace FFXI_Tools_Api_dotnet.Services;
 
-public class MongoDBService
+public class UserService
 {
   private readonly IMongoCollection<User> _userCollection;
 
-  public MongoDBService(IOptions<MongoDbSettings> mongoDbSettings)
+  public UserService(IOptions<MongoDbSettings> mongoDbSettings)
   {
     MongoClient client = new MongoClient(mongoDbSettings.Value.ConectionURI);
     IMongoDatabase database = client.GetDatabase(mongoDbSettings.Value.DatabaseName);
-    _userCollection = database.GetCollection<User>(mongoDbSettings.Value.CollectionName);
+    _userCollection = database.GetCollection<User>("users");
   }
 
   public async Task CreateAsync(User user)

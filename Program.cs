@@ -4,7 +4,7 @@ using FFXI_Tools_Api_dotnet.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddSingleton<UserService>();
 
 // Add services to the container.
 
