@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using FFXI_Tools_Api_dotnet.Services;
 using FFXI_Tools_Api_dotnet.Models;
